@@ -1,0 +1,46 @@
+.services {
+    &__grid {
+        padding: 100px 0;
+        display: grid;
+        grid-template-columns: repeat(1fr);
+        grid-gap: 20px;
+
+        @media screen and (min-width:768px){
+            grid-gap: 80px;
+            grid-template-columns: repeat(3, minmax(150px, 1fr));
+        }
+        &__col {
+        }
+    }
+
+    &__icon {
+        width: 35%;
+        margin-right: auto;
+        @media screen and (min-width: 1024px) {
+            width: 35%;
+            margin: 0 auto;
+        }
+    }
+
+    &__header {
+        margin: 10px 0 10px;
+        text-align: left;
+        font-size: 24px;
+        font-weight: bold;
+        @media screen and (min-width: 1024px) {
+            margin-top: 25px;
+            text-align: center;
+            font-size: 34px;
+            font-weight: bold;
+        }
+    }
+
+    &__description {
+        font-size: 18px;
+
+        span {
+            color: #1b5dce;
+            font-weight: bold;
+        }
+    }
+}

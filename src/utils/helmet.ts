@@ -6,8 +6,11 @@ const description = 'The easiest and fastest way to create new projects.';
 
 export const helmet = {
   title,
-  titleTemplate: '%s - Ueno',
+  titleTemplate: '%s - MockupGenerator',
   htmlAttributes: { lang: 'en' },
+  bodyAttributes: {
+    id: 'my-scrollbar',
+  },
   meta: [
     { name: 'description', content: description },
     {
@@ -32,5 +35,12 @@ export const helmet = {
     { name: 'twitter:creator', content: '@uenodotco' },
     { name: 'twitter:description', content: description },
   ],
-  link: [{ rel: 'icon', type: 'image/x-icon', href: favicon }],
+  link: [
+    { rel: 'icon', type: 'image/x-icon', href: favicon },
+    {
+      rel: 'stylesheet',
+      type: 'text/css',
+      href: 'https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/1.6.2/tailwind.min.css',
+    },
+  ],
 };

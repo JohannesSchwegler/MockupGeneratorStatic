@@ -25,7 +25,9 @@ export const Button = ({ children, href, onClick }: ButtonProps) => {
   if (isLink) {
     return (
       <Link className={s.button} to={href || '#'}>
-        {children}
+        <span>   {children}</span>
+        <svg width="12" height="14" viewBox="0 0 12 14"><path d="M5.17 10V.17h2V10l3.24-3.24 1.42 1.41-5.66 5.66-1.41-1.42L.51 8.17l1.42-1.41z"></path></svg>
+
       </Link>
     );
   }

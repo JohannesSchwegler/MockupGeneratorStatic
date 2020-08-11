@@ -1,0 +1,178 @@
+@import "~styles/config";
+
+:root {
+    --flex-direction: column;
+    --layoutWidth: 1280px;
+    --paddingContainer: 0 30px;
+    --sectionHeight: 100vh;
+    --skewedHeight: 120px;
+    @media screen and (min-width: 1024px) {
+        --flex-direction: row;
+        --sectionHeight: 60vh;
+        --skewedHeight: 250px;
+    }
+}
+.hero {
+    position: relative;
+    height: var(--sectionHeight);
+    padding-top: 100px;
+
+    @media screen and (min-width: 1024px) {
+        display: flex;
+        align-items: center;
+    }
+
+    &.dark {
+        color: #fff;
+    }
+
+    &__header {
+        @include rf(26, 50);
+        font-weight: 600;
+        font-family: $font-heading;
+        margin-bottom: 10px;
+    }
+
+    &__subheader {
+        margin-bottom: 50px;
+    }
+
+    &__background {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color:$background-primary;
+        clip-path: polygon(0 0, 100% 0%, 100% 65%, 0 100%);
+
+        &.dark {
+            background: #4e6280;
+        }
+    }
+
+    &__grid {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        flex-direction: var(--flex-direction);
+
+        &__col {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
+            &.__left {
+                order: 1;
+                @media screen and (min-width: 1024px) {
+                    padding-right: 150px;
+
+                    order: 0;
+                }
+            }
+            &.__right {
+                img {
+                    position: relative;
+                    display: block;
+                    width: 200px;
+                    margin: 0 auto;
+
+                    @media screen and (min-width: 1024px) {
+                        width: 390px;
+                    }
+                }
+            }
+        }
+    }
+
+    &__cta {
+        margin-right: auto;
+       
+    }
+
+    &__phone {
+        position: relative;
+        margin-top: 60px;
+        z-index: 10;
+        width: 264px;
+        height: 533px;
+        padding: 8px;
+        border-radius: 36px;
+        background: #f6f9fc;
+        box-shadow: 0 50px 100px -20px rgba(50, 50, 93, 0.25), 0 30px 60px -30px rgba(0, 0, 0, 0.3),
+            inset 0 -2px 6px 0 rgba(10, 37, 64, 0.35);
+
+        user-select: none;
+
+        &__screen {
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+            border-radius: 34px;
+            background: #fff;
+            &__inner {
+                height: 100%;
+                padding: 24px 16px;
+                border-radius: 28px;
+                background: #fff;
+                font-size: 11px;
+                font-weight: var(--fontWeightNormal);
+                letter-spacing: 0.2px;
+                
+            }
+        }
+    }
+
+    &__dashboard {
+        position: absolute;
+        top: 0;
+        right: -360px;
+        --gutter: 24px;
+        display: grid;
+        grid: auto/152px 1fr;
+        gap: var(--gutter);
+        width: 929px;
+        padding: var(--gutter);
+        border-radius: 8px;
+        background: -webkit-gradient(
+            linear,
+            left top,
+            left bottom,
+            from(hsla(0, 0%, 100%, 0.4)),
+            color-stop(25%, hsla(0, 0%, 100%, 0.3)),
+            color-stop(50%, rgba(246, 249, 252, 0.3)),
+            color-stop(60%, #f6f9fc)
+        );
+        background: linear-gradient(
+            hsla(0, 0%, 100%, 0.4),
+            hsla(0, 0%, 100%, 0.3) 25%,
+            rgba(246, 249, 252, 0.3) 50%,
+            #f6f9fc 60%
+        );
+        box-shadow: inset 0 1px 1px 0 hsla(0, 0%, 100%, 0.1), 0 50px 100px -20px rgba(50, 50, 93, 0.25),
+            0 30px 60px -30px rgba(0, 0, 0, 0.3);
+        font-size: 11px;
+        font-weight: 300;
+        letter-spacing: 0.2px;
+        line-height: 14px;
+        color: #425466;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+
+        &__sidebar {
+            width: 100%;
+            align-items: center;
+            font-weight: 620;
+            color: #fff;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+        }
+
+        &__body {
+            min-height: 470px;
+        }
+    }
+}

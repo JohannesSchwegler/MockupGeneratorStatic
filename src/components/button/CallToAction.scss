@@ -1,0 +1,17 @@
+@import "~styles/config";
+
+.cta{
+    display: flex;
+    padding: 106px 70px;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 8px;
+    background-color:$background-primary;
+
+    &__text{
+        max-width: 500px;
+        color: #0a2540;
+        font-size: 44px;
+        line-height: 62px;
+    }
+}
