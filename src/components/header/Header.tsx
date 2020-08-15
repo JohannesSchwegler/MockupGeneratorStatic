@@ -17,12 +17,7 @@ export const Header = ({ children }: HeaderProps) => (
       </Link>
 
         <ul className={s.header__navigation}>
-          <li>
-            <a href="#product" className="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out">Product</a>
-          </li>
-          <li>
-            <a href="#product" className="font-medium text-gray-500 hover:text-gray-900 transition duration-150 ease-in-out">Product</a>
-          </li>
+          {children}
         </ul>
 
 

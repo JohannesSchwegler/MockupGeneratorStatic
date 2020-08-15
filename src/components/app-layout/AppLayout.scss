@@ -1,11 +1,12 @@
-@import '~styles/config';
+@import "~styles/config";
 
 :global {
-  @import '~styles/base';
+  @import "~styles/base";
 }
 
 .layout {
   display: block;
 
   min-height: 100vh;
+  padding-top: 110px;
 }

@@ -28,45 +28,44 @@ export default ({ children }: AppLayoutProps) => {
 
 
   useEffect(() => {
-    const scrollbar:any = document.querySelector('#my-scrollbar')
+    const scrollbar: any = document.querySelector('#my-scrollbar')
     console.log(scrollbar);
     const options = {
       damping: 0.07
     }
     Scrollbar.init(scrollbar, options);
- 
+
   }, [])
 
   return (
 
-      <div className={s.layout}>
-        <Helmet {...helmet} />
+    <div className={s.layout}>
+      <Helmet {...helmet} />
 
-        <Header>
-       
-          <HeaderLink name="Components" to="/components" />
-          <HeaderLink name="Contact" to="/contact" />
+      <Header>
+        <HeaderLink name="Mockups" to="/mockups" />
+        <HeaderLink name="Components" to="/components" />
+        <HeaderLink name="Contact" to="/contact" />
 
-          <HeaderLink name="github" to="https://github.com/ueno-llc" icon={<Github />} />
-        </Header>
+      </Header>
 
-        {children}
-    
+      {children}
 
-        <Footer
-          logo={<Logo />}
-          social={[
-            { icon: <Dribbble />, to: 'https://dribbble.com/ueno' },
-            { icon: <Twitter />, to: 'https://twitter.com/uenodotco' },
-            { icon: <Github />, to: 'https://github.com/ueno-llc' },
-            { icon: <Instagram />, to: 'https://www.instagram.com/uenodotco' },
-            { icon: <Facebook />, to: 'https://www.facebook.com/uenodotco' },
-            { icon: <Linkedin />, to: 'https://www.linkedin.com/company/ueno' },
-          ]}
-        />
 
-        {isDev && <Devtools />}
-      </div>
+      <Footer
+        logo={<Logo />}
+        social={[
+          { icon: <Dribbble />, to: 'https://dribbble.com/ueno' },
+          { icon: <Twitter />, to: 'https://twitter.com/uenodotco' },
+          { icon: <Github />, to: 'https://github.com/ueno-llc' },
+          { icon: <Instagram />, to: 'https://www.instagram.com/uenodotco' },
+          { icon: <Facebook />, to: 'https://www.facebook.com/uenodotco' },
+          { icon: <Linkedin />, to: 'https://www.linkedin.com/company/ueno' },
+        ]}
+      />
+
+      {isDev && <Devtools />}
+    </div>
 
   );
 }
