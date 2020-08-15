@@ -13,7 +13,7 @@ export default () => (
         <Container>
 
             <Canvas />
-            <Preview />
+          
 
         </Container>
 
