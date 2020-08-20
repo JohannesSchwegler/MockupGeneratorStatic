@@ -5,44 +5,56 @@ import ImageUploader from "react-images-upload";
 import * as THREE from 'three';
 import { Row } from "../row/Row"
 
-import imgSrc from "../../assets/images/mockup/laptop.jpg"
-import imgMaskSrc from "../../assets/images/mockup/laptop--mask.png"
-import display from "../../assets/images/cube.png"
+import mockupSrc from "../../assets/images/mockup/laptop.jpg"
+import maskSrc from "../../assets/images/mockup/laptop--mask.png"
+import imageSrc from "../../assets/images/share.png"
 
+
+console.log(maskSrc)
 
 const widthX = 1000
 const img = new Image();
-img.src = imgSrc;
+img.src = mockupSrc;
+
+
+let mockup = new Image;
+let mask = new Image;
+let image = new Image;
+
+
+
+mockup.src = mockupSrc;
+mask.src = maskSrc;
+image.src = imageSrc;
+
 export default function Canvas(props: any) {
     let ctx: any;
     const [pictures, setPictures] = useState([] as any);
 
     const onDrop = (picture: any) => {
-    
-        updateCanvas(picture, ctx)
+
+
         setPictures([...pictures, picture]);
     };
 
 
 
     useEffect(() => {
+        console.log(pictures);
+        if (pictures.length) {
+            const image = new Image()
 
-        var iShoe = new Image, iMask = new Image, iPatt = new Image, count = 3;
-        iShoe.onload = iMask.onload = iPatt.onload = loader;
-        iShoe.src = imgSrc;
-        iMask.src = imgMaskSrc;
-        iPatt.src = display;
-
-        function loader() {
-            if (--count) return;  // wait until all images has loaded
-
-            ctx = setupMainCanvas(widthX, {
-                mockupWidth: img.width,
-                mockupHeight: img.height,
-            })
-            drawMockup(ctx, iShoe, iMask, iPatt)
+            const url = URL.createObjectURL(pictures[0][0]);
+            image.src = url;
+            mockup.onload = drawMockup(mockup, mask, image);
+        } else {
+            mockup.onload = drawMockup(mockup, mask, image);
         }
-    }, [])
+
+        console.log("gg");
+
+
+    }, [pictures])
 
 
 
@@ -75,9 +87,25 @@ export default function Canvas(props: any) {
     )
 }
 
+function previewFile(file: any) {
 
+    const image = new Image()
 
+    const url = URL.createObjectURL(file[0]);
+    image.src = url;
+    image.onload = drawMockup(mockup, mask, image);
+    console.log(url);
+}
 
+/* function loader(ctx:any, mockup:any, mask:any, image:any) {
+    ctx = setupMainCanvas(widthX, {
+        mockupWidth: img.width,
+        mockupHeight: img.height,
+    })
+    drawMockup(ctx, mockup, mask, image)
+
+}
+ */
 
 interface mockupProps {
     mockupWidth: number
@@ -85,21 +113,10 @@ interface mockupProps {
 }
 
 
-
-function updateCanvas(image: any, ctx: any) {
-    const iMask = new Image
-
-    iMask.src = image;
-    iMask.onload = function () {
-        ctx.drawImage(image, 0, 0);
-    };
-
-
-}
-
 function setupMainCanvas(widthX: number, mockup: mockupProps) {
     const canvasDomElement: HTMLCanvasElement = document.querySelector(`.${s.canvas}`) || document.createElement("canvas")
-    console.log(canvasDomElement);
+
+
     const { mockupWidth, mockupHeight } = mockup;
     const canvasWidth = canvasDomElement.width = widthX
     const canvasHeight = canvasDomElement.height = (mockupHeight / mockupWidth) * widthX
@@ -112,8 +129,10 @@ function setupMainCanvas(widthX: number, mockup: mockupProps) {
 
 
 
-function drawMockup(ctx: any, mockup: HTMLImageElement, mask: HTMLImageElement, image: HTMLImageElement) {
-    var pattern = ctx.createPattern(image, "repeat");
+function drawMockup(mockup: HTMLImageElement, mask: HTMLImageElement, image: HTMLImageElement) {
+
+    const ctx = setupMainCanvas(900, { mockupWidth: mockup.width, mockupHeight: mockup.height })
+    var pattern = ctx.createPattern(image, "no-repeat");
 
     // draw in mask
     ctx.drawImage(mask, 0, 0, img.width, img.height,     // source rectangle
@@ -122,14 +141,14 @@ function drawMockup(ctx: any, mockup: HTMLImageElement, mask: HTMLImageElement, 
     ctx.globalCompositeOperation = "source-atop";
 
     // fill mask
-    ctx.scale(0.5, 0.5);                 // scale: 0.5
+    ctx.scale(.5,.5);                 // scale: 0.5
     ctx.fillStyle = pattern;             // remember to double the area to fill:
-    ctx.fillRect(0, 0, ctx.canvas.width * 2, ctx.canvas.height * 2);
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     ctx.setTransform(1, 0, 0, 1, 0, 0);       // reset transform
 
     // draw shoe behind mask
     ctx.globalCompositeOperation = "destination-atop";
-
+  
     ctx.drawImage(mockup, 0, 0, img.width, img.height,     // source rectangle
         0, 0, widthX, (img.height / img.width) * widthX); // destination rectangle
 
@@ -140,3 +159,4 @@ function drawMockup(ctx: any, mockup: HTMLImageElement, mask: HTMLImageElement, 
     }
 
 }
+

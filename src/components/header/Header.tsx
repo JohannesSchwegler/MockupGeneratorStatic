@@ -13,7 +13,7 @@ export const Header = ({ children }: HeaderProps) => (
     <div className={s.header__container}>
       <div className={s.header__content}>
         <Link to="/" className={s.header__logo}>
-          Logo
+          Ldfsdfsdfsdfdf
       </Link>
 
         <ul className={s.header__navigation}>
